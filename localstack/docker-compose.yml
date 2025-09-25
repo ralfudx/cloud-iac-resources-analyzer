@@ -1,0 +1,19 @@
+version: "3.8"
+
+services:
+  localstack:
+    build: .
+    container_name: localstack-iac
+    ports:
+      - "4566:4566"   # Edge port (for all services)
+      - "4571:4571"   # Optional: internal service port
+    environment:
+      - SERVICES=s3
+      - DEBUG=1
+      - DATA_DIR=/tmp/localstack/data
+      - AWS_ACCESS_KEY_ID=test
+      - AWS_SECRET_ACCESS_KEY=test
+      - AWS_DEFAULT_REGION=us-east-1
+    volumes:
+      - "./volume:/var/lib/localstack"
+      - "/var/run/docker.sock:/var/run/docker.sock"
