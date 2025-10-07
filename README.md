@@ -42,22 +42,13 @@ cloud-iac-analyzer/
    pip install -r requirements.txt
    ```
 
-3. **Prepare LocalStack (with S3 bucket)**:
-    
-    Build and run the Docker container:
-    ```bash
-    docker build -t cloud-iac-analyzer-localstack .
-    docker run -d -p 4566:4566 --name localstack cloud-iac-analyzer-localstack
-    ```
-    This will start LocalStack with an S3 bucket `analyzer-reports` created automatically.
-
 ---
 
 ## ▶️ Running the Analyzer
 
 1. **Basic Run (Console Output Only)**
     ```bash
-    python cli.py --cloud sample/cloud_resources.json --iac sample/iac_resources.json
+    python cli.py --cloud resources/cloud_resources.json --iac resources/iac_resources.json
     ```
 
 2. **Upload Report Directly to LocalStack S3**
@@ -101,7 +92,7 @@ Handy shortcuts are provided:
     make all
 
 
-- Run Full Workflow & push report to s3 (Start → upload-direct)
+- Run Full Workflow & push report to s3 (Start → Upload-direct → List)
     ```bash
     make all-direct
 
