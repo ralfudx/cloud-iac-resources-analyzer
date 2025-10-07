@@ -114,25 +114,6 @@ def compare_resources(cloud: Dict[str, Any], iac: Dict[str, Any]) -> Dict[str, A
         "ChangeLog": changes
     }
 
-
-# def analyze_resources(
-#     cloud_resources: List[Dict[str, Any]],
-#     iac_resources: List[Dict[str, Any]]
-# ) -> List[Dict[str, Any]]:
-#     """Compare all cloud resources against IaC resources."""
-#     results = []
-#     for cloud_res in cloud_resources:
-#         match = next(
-#             (
-#                 iac for iac in iac_resources
-#                 if iac.get("type") == cloud_res.get("type")
-#                 and iac.get("name") == cloud_res.get("name")
-#             ),
-#             None
-#         )
-#         results.append(compare_resources(cloud_res, match))
-#     return results
-
 def analyze_resources(cloud_resources: dict, iac_resources: dict) -> list:
     results = []
     for cloud_res in cloud_resources.get("resources", []):

@@ -24,9 +24,6 @@ def main():
 
     print(json.dumps(report, indent=2))
 
-    print("Done. Summary:", summary)
-    print("Wrote:", args.out)
-
     if args.s3_bucket:
         upload_report_to_s3(report, args.s3_bucket, args.s3_key, args.s3_endpoint)
 

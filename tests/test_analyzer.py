@@ -67,6 +67,7 @@ def test_analyze_resources_full_flow():
     cloud_resources = {
         "resources": [
             {"type": "aws_instance", "id": "i-123", "instance_type": "t3.micro"},
+            {"type": "aws_db_instance", "id": "prod-db-1", "engine": "postgres", "publicly_accessible": True},
             {"type": "aws_s3_bucket", "id": "my-logs", "public": True},
         ]
     }
@@ -74,6 +75,7 @@ def test_analyze_resources_full_flow():
     iac_resources = {
         "resources": [
             {"type": "aws_instance", "id": "i-123", "instance_type": "t3.micro"},
+            {"type": "aws_db_instance", "id": "prod-db-1", "engine": "postgres", "publicly_accessible": False},
             # no S3 bucket here -> should be Missing
         ]
     }
@@ -82,5 +84,6 @@ def test_analyze_resources_full_flow():
 
     states = [r["State"] for r in results]
     assert "Match" in states
+    assert "Modified" in states
     assert "Missing" in states
-    assert len(results) == 2
+    assert len(results) == 3
